@@ -7,7 +7,7 @@ const ListItem = (props) => (
     className={`list-item ${props.size}`}
   >
     <div className="content">
-      <h1 className="title">{props.title}</h1>
+      <h1 className="title">{props.title.toUpperCase()}</h1>
       <span className="subtitle">Shop Now</span>
     </div>
   </div>
