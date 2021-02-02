@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import React from "react";
 import ListItem from "../list-item/list-item";
 import "./card-list.styles.scss";
