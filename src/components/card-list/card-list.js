@@ -46,6 +46,7 @@ export default function CardList() {
           image={section.imageUrl}
           title={section.title}
           size={section.size}
+          linkUrl={section.linkUrl}
         ></ListItem>
       ))}
     </div>
