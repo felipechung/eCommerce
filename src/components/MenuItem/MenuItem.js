@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import "./list-item.styles.scss";
+import "./MenuItem.scss";
 
-const ListItem = (props) => (
+const MenuItem = (props) => (
   <div
-    className={`list-item ${props.size}`}
+    className={`menu-item ${props.size}`}
     onClick={() => {
       props.history.push(`${props.match.url}${props.linkUrl}`);
     }}
@@ -21,4 +21,4 @@ const ListItem = (props) => (
   </div>
 );
 
-export default withRouter(ListItem);
+export default withRouter(MenuItem);

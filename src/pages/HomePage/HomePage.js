@@ -1,10 +1,10 @@
 import React from "react";
-import "./homepage.styles.scss";
-import CardList from "../../components/card-list/card-list";
+import "./HomePage.scss";
+import MenuList from "../../components/MenuList/MenuList";
 
 const HomePage = () => (
   <div className="homepage">
-    <CardList />
+    <MenuList />
   </div>
 );
 

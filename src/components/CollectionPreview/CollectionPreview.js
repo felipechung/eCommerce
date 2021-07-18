@@ -1,5 +1,7 @@
 import React from "react";
+
 import "./CollectionPreview.scss";
+import CollectionItem from "../CollectionItem/CollectionItem";
 
 function CollectionPreview(props) {
   return (
@@ -12,7 +14,14 @@ function CollectionPreview(props) {
           })
 
           .map((item) => {
-            return <div key={item.id}>{item.name}</div>;
+            return (
+              <CollectionItem
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                imageUrl={item.imageUrl}
+              />
+            );
           })}
       </div>
     </div>

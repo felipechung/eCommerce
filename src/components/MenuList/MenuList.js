@@ -1,8 +1,8 @@
 import { React, useState } from "react";
-import ListItem from "../list-item/list-item";
-import "./card-list.styles.scss";
+import MenuItem from "../MenuItem/MenuItem";
+import "./MenuList.scss";
 
-export default function CardList() {
+export default function MenuList() {
   const [sections, setSections] = useState([
     {
       title: "hats",
@@ -39,15 +39,15 @@ export default function CardList() {
   ]);
 
   return (
-    <div className="card-list">
+    <div className="menu-list">
       {sections.map((section) => (
-        <ListItem
+        <MenuItem
           key={section.id}
           image={section.imageUrl}
           title={section.title}
           size={section.size}
           linkUrl={section.linkUrl}
-        ></ListItem>
+        ></MenuItem>
       ))}
     </div>
   );
