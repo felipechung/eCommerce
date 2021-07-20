@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import "./SignIn.scss";
 
 import FormInput from "../FormInput/FormInput";
+import CustomButton from "../CustomButton/CustomButton";
 
 function SignIn() {
   const [userEmail, setUserEmail] = useState("");
@@ -44,8 +45,7 @@ function SignIn() {
           onChange={handlePasswordChange}
           required
         />
-
-        <input type="submit" value="Submit Form" />
+        <CustomButton type="submit">Sign In</CustomButton>
       </form>
     </div>
   );
