@@ -4,6 +4,7 @@ import "./SignIn.scss";
 import FormInput from "../FormInput/FormInput";
 import CustomButton from "../CustomButton/CustomButton";
 
+import { signInWithGoogle } from "../../firebase/firebase";
 function SignIn() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -45,7 +46,10 @@ function SignIn() {
           onChange={handlePasswordChange}
           required
         />
-        <CustomButton type="submit">Sign In</CustomButton>
+        <CustomButton type="submit">Sign in</CustomButton>
+        <CustomButton onClick={signInWithGoogle}>
+          Sign in with Google
+        </CustomButton>
       </form>
     </div>
   );
