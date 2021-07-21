@@ -63,7 +63,7 @@ function App() {
   }
 
   const user = useAuthUser();
-  console.log(user);
+
   return (
     <div>
       <Header currentUser={user.currentUser} />
