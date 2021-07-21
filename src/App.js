@@ -29,13 +29,29 @@ function App() {
   // }
 
   function useAuthUser() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({
+      currentUser: null,
+    });
 
     useEffect(() => {
       // no need for ref here
-      const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
         // setUser(user);
-        createUserProfileDocument(user);
+
+        if (userAuth) {
+          const userRef = await createUserProfileDocument(userAuth);
+
+          userRef.onSnapshot((snapShot) => {
+            setUser({
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            });
+          });
+        } else {
+          setUser({ currentUser: userAuth });
+        }
       });
 
       return () => {
@@ -47,10 +63,10 @@ function App() {
   }
 
   const user = useAuthUser();
-
+  console.log(user);
   return (
     <div>
-      <Header currentUser={user} />
+      <Header currentUser={user.currentUser} />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
