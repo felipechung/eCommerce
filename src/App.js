@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/Shop/ShopPage";
 import Header from "./components/Header/Header";
 import SignInPage from "./pages/SignInPage/SignInPage";
-import { auth } from "./firebase/firebase";
+import { auth, createUserProfileDocument } from "./firebase/firebase";
 
 function App() {
   // constructor() {
@@ -33,8 +33,9 @@ function App() {
 
     useEffect(() => {
       // no need for ref here
-      const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-        setUser(user);
+      const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+        // setUser(user);
+        createUserProfileDocument(user);
       });
 
       return () => {
