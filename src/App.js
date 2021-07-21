@@ -1,4 +1,4 @@
-import { React, Component } from "react";
+import { React, useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import "./App.css";
@@ -9,36 +9,54 @@ import Header from "./components/Header/Header";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import { auth } from "./firebase/firebase";
 
-class App extends Component {
-  constructor() {
-    super();
+function App() {
+  // constructor() {
+  //   super();
 
-    this.state = {
-      currentUser: null,
-    };
-  }
-  unsubscribeFromAuth = null;
-  componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-    });
+  //   this.state = {
+  //     currentUser: null,
+  //   };
+  // }
+  // unsubscribeFromAuth = null;
+  // componentDidMount() {
+  //   this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+  //     this.setState({ currentUser: user });
+  //   });
+  // }
+
+  // componentWillUnmount() {
+  //   this.unsubscribeFromAuth();
+  // }
+
+  function useAuthUser() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+      // no need for ref here
+      const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+        setUser(user);
+      });
+
+      return () => {
+        unsubscribeFromAuth();
+      };
+    }, []);
+
+    return user; // return authenticated user
   }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-  render() {
-    return (
-      <div>
-        <Header currentUser={this.state.currentUser} />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/sign-in" component={SignInPage} />
-        </Switch>
-      </div>
-    );
-  }
+  const user = useAuthUser();
+
+  return (
+    <div>
+      <Header currentUser={user} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/sign-in" component={SignInPage} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
