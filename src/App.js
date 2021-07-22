@@ -36,8 +36,6 @@ function App() {
     useEffect(() => {
       // no need for ref here
       const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-        // setUser(user);
-
         if (userAuth) {
           const userRef = await createUserProfileDocument(userAuth);
 
@@ -48,7 +46,6 @@ function App() {
                 ...snapShot.data(),
               },
             });
-            // console.log(user);
           });
         } else {
           setUser({ currentUser: userAuth });
