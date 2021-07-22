@@ -6,7 +6,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/Shop/ShopPage";
 import Header from "./components/Header/Header";
-import SignInPage from "./pages/SignInPage/SignInPage";
+import SignInAndSignUpPage from "./pages/SignInAndSignUpPage/SignInAndSignUpPage";
 import { auth, createUserProfileDocument } from "./firebase/firebase";
 
 function App() {
@@ -48,6 +48,7 @@ function App() {
                 ...snapShot.data(),
               },
             });
+            // console.log(user);
           });
         } else {
           setUser({ currentUser: userAuth });
@@ -70,7 +71,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
-        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/sign-in" component={SignInAndSignUpPage} />
       </Switch>
     </div>
   );
