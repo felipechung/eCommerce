@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user-actions";
 import "./App.css";
 
 import HomePage from "./pages/HomePage/HomePage";
@@ -74,4 +75,8 @@ function App() {
   );
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return { setCurrentUser: (user) => dispatch(setCurrentUser(user)) };
+}
+
+export default connect(null, mapDispatchToProps)(App);
